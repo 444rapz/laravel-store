@@ -37,7 +37,7 @@ const sliderFormat = (value: number) => `${Math.round(value)} $`
             </div>
         </Filter>
 
-        <Filter title="Prices">
+        <Filter title="Prices" classes="">
             <div class="flex items-center justify-between space-x-3">
                 <div class="basis-1/3">
                     <label for="filters-price-from" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> From </label>
