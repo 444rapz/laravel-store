@@ -1,172 +1,280 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛍️ Laravel Store - E-Commerce Platform
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Modern e-commerce platform built with Laravel 11, Vue 3, and Inertia.js. Features a complete shopping experience with admin panel, payment integration, and responsive design.
 
-# E-commerce project with Laravel 10, Vue 3 and Inertia.js
+![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-3-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white)
 
-## Must have requirements
+## 🚀 Features
 
--   **Docker & Docker Compose.**
+### Customer Features
+- 🔐 **Authentication**: Register, login, social login (Google, GitHub)
+- 🛒 **Shopping Cart**: Add, update, remove items with real-time updates
+- ❤️ **Wishlist**: Save products for later
+- 📦 **Product Catalog**: Browse by categories, brands with search and filters
+- ⭐ **Reviews & Ratings**: Customer reviews with ratings
+- 💳 **Secure Checkout**: Stripe payment integration
+- 📍 **Address Management**: Multiple delivery addresses
+- 📱 **Responsive Design**: Mobile-first approach
 
-## Docker installation workflow
+### Admin Features
+- 📊 **Dashboard**: Powered by Filament Admin Panel
+- 📝 **Product Management**: CRUD operations for products, categories, brands
+- 🏷️ **Promo Codes**: Create and manage discount codes
+- 📈 **Order Management**: Track and manage customer orders
+- 👥 **User Management**: Manage customers and permissions
 
-### 1. Clone this repository to your local folder
+### Technical Features
+- 🚄 **SPA Experience**: Using Inertia.js for seamless navigation
+- 🔄 **Real-time Updates**: Laravel Horizon for queue management
+- 🔍 **Monitoring**: Laravel Telescope for debugging
+- 🐳 **Docker Support**: Ready-to-use Docker configuration
+- 🗄️ **Database Support**: SQLite (default) or MySQL
+- 🎨 **Modern UI**: Tailwind CSS with Flowbite components
 
+## 📋 Requirements
+
+- PHP >= 8.2
+- Composer
+- Node.js >= 18
+- NPM or Yarn
+- SQLite or MySQL
+
+## 🛠️ Installation
+
+### Option 1: Local Development (Laragon/XAMPP)
+
+1. **Clone the repository**
 ```bash
-git clone git@github.com:fordiquez/laravel-store.git
-```
-
-```bash
+git clone https://github.com/444rapz/laravel-store.git
 cd laravel-store
 ```
 
-### 2. Create .env
-
-```bash
-cp .env.example .env
-```
-
-### 3. Setup .env variables
-
-#### 3.1 Set up base url for your application
-
-```dotenv
-APP_URL=
-```
-
-#### 3.2 Set up your database credentials
-
-```dotenv
-DB_CONNECTION=sqlite
-#DB_HOST=mysql
-#DB_PORT=3306
-#DB_DATABASE=brandford
-#DB_USERNAME=root
-#DB_PASSWORD=root
-```
-
-#### 3.3 Set up your cache & session driver, filesystem disk & queue connection
-
-```dotenv
-CACHE_DRIVER=database
-FILESYSTEM_DISK=public
-QUEUE_CONNECTION=database
-SESSION_DRIVER=database
-```
-
-#### 3.3 Set up mail SMTP options
-
-```dotenv
-MAIL_MAILER=
-MAIL_HOST=
-MAIL_PORT=
-MAIL_USERNAME=
-MAIL_PASSWORD=
-MAIL_ENCRYPTION=
-MAIL_FROM_ADDRESS=
-MAIL_FROM_NAME=
-```
-
-#### 3.4 Set up `multiavatar` API key
-
-```dotenv
-MULTIAVATAR_API_KEY=
-```
-
-#### 3.5 Set up `Countries States Cities` API key
-
-```dotenv
-CSC_API_KEY=
-```
-
-#### 3.7 Setup `Stripe` keys
-
-```dotenv
-STRIPE_KEY=
-STRIPE_SECRET=
-STRIPE_WEBHOOK_SECRET=
-```
-
-### 4. Install all composer & npm dependencies
-
+2. **Install dependencies**
 ```bash
 composer install
-```
-
-```bash
 npm install
 ```
 
-### 5. Docker settings
+3. **Environment setup**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
+4. **Configure database in `.env`**
+```env
+# For SQLite (default)
+DB_CONNECTION=sqlite
+
+# For MySQL
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=laravel_store
+# DB_USERNAME=root
+# DB_PASSWORD=
+```
+
+5. **Run migrations and seeders**
+```bash
+# Create SQLite database file (if using SQLite)
+touch database/database.sqlite
+
+# Run migrations with sample data
+php artisan migrate:fresh --seed
+```
+
+6. **Build assets and start servers**
+```bash
+# Terminal 1 - Start Laravel server
+php artisan serve
+
+# Terminal 2 - Start Vite dev server
+npm run dev
+
+# Optional - Start queue worker
+php artisan queue:work
+```
+
+7. **Access the application**
+- Frontend: http://localhost:8000
+- Admin Panel: http://localhost:8000/admin
+- Default Admin: admin@brandford.com / password: brandford22
+
+### Option 2: Docker Installation
+
+1. **Clone and setup**
+```bash
+git clone https://github.com/444rapz/laravel-store.git
+cd laravel-store
+cp .env.example .env
+```
+
+2. **Build and run containers**
 ```bash
 docker-compose up --build -d
 ```
 
+3. **Install dependencies and migrate**
+```bash
+docker exec -it store-laravel composer install
+docker exec -it store-laravel npm install
+docker exec -it store-laravel php artisan key:generate
+docker exec -it store-laravel php artisan migrate:fresh --seed
+docker exec -it store-laravel npm run build
+```
+
+4. **Start Horizon (in separate terminal)**
 ```bash
 docker exec -it store-laravel php artisan horizon
 ```
 
+## 🔧 Configuration
+
+### Payment Integration (Stripe)
+Add to your `.env`:
+```env
+STRIPE_KEY=your_stripe_publishable_key
+STRIPE_SECRET=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_webhook_secret
+```
+
+### Social Authentication
+```env
+# GitHub OAuth
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
+
+### Mail Configuration
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@laravelstore.com
+```
+
+### Countries/States/Cities API
+```env
+CSC_API_URL=https://api.countrystatecity.in/v1/countries/
+CSC_API_KEY=your_api_key
+```
+
+## 📁 Project Structure
+
+```
+laravel-store/
+├── app/
+│   ├── Filament/        # Admin panel resources
+│   ├── Http/
+│   │   ├── Controllers/  # API and web controllers
+│   │   └── Middleware/   
+│   ├── Models/           # Eloquent models
+│   └── Enums/            # Application enums
+├── database/
+│   ├── factories/        # Model factories
+│   ├── migrations/       # Database migrations
+│   └── seeders/          # Database seeders
+├── resources/
+│   ├── js/              
+│   │   ├── Components/   # Vue components
+│   │   ├── Pages/        # Inertia pages
+│   │   └── Layouts/      # Layout components
+│   └── css/              # Stylesheets
+├── routes/
+│   ├── web.php           # Web routes
+│   ├── api.php           # API routes
+│   └── auth.php          # Authentication routes
+└── docker/               # Docker configuration
+```
+
+## 🧪 Testing
+
+Run the test suite:
 ```bash
-docker exec -it store-laravel /bin/bash
+# Run all tests
+php artisan test
+
+# Run with coverage
+php artisan test --coverage
 ```
 
-### 6. Run artisan commands
+## 📚 Key Technologies
 
+- **Backend**: Laravel 11, PHP 8.2
+- **Frontend**: Vue 3, Inertia.js, TypeScript
+- **Database**: SQLite/MySQL, Laravel Eloquent ORM
+- **Admin Panel**: Filament 3
+- **Styling**: Tailwind CSS, Flowbite
+- **Payment**: Stripe, Laravel Cashier
+- **Queue**: Laravel Horizon, Redis
+- **Monitoring**: Laravel Telescope
+- **Authentication**: Laravel Breeze, Socialite
+- **Media**: Spatie Media Library
+- **Containerization**: Docker, Docker Compose
+
+## 🚢 Deployment
+
+### Production Build
 ```bash
-php artisan key:generate
+# Install production dependencies
+composer install --optimize-autoloader --no-dev
+npm ci
+
+# Build assets
+npm run build
+
+# Cache configuration
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Run migrations
+php artisan migrate --force
 ```
 
-```bash
-php artisan storage:link
+### Environment Variables for Production
+Ensure these are set in production:
+```env
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://yourdomain.com
 ```
 
-```bash
-php artisan migrate:fresh --seed
-```
+## 🤝 Contributing
 
-```bash
-php artisan shield:install --fresh
-```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-```bash
-php artisan db:seed --class=RoleSeeder
-```
+## 📝 License
 
-```bash
-php artisan optimize:clear
-```
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-### 7. Run dev server
+## 👨‍💻 Author
 
-```bash
-npm run dev
-```
+**444rapz**
+- GitHub: [@444rapz](https://github.com/444rapz)
 
-### 8. Run stripe webhook
+## 🙏 Acknowledgments
 
-```bash
-stripe login
-```
+- Laravel Team for the amazing framework
+- Vue.js Team for the reactive framework
+- Filament Team for the admin panel
+- All contributors and package maintainers
 
-```bash
-stripe listen --forward-to laravel-store.test/stripe/webhook
-```
+---
 
-### 9. Edit hosts file
-
-**Path for Windows:**
-```
-C:\Windows\System32\drivers\etc
-```
-
-**Add your application domain:**
-
-```ini
-127.0.0.1       laravel-store.test
-```
+<p align="center">Made with ❤️ using Laravel & Vue.js</p>
